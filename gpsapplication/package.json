@@ -1,0 +1,31 @@
+{
+  "name": "gpsapplication",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:4000",
+  "dependencies": {
+    "fixed-data-table": "^0.6.5",
+    "google-maps-react": "^1.1.11",
+    "lodash": "^4.17.5",
+    "match-sorter": "^2.2.1",
+    "material-ui": "^1.0.0-beta.38",
+    "material-ui-icons": "^1.0.0-beta.36",
+    "prop-types": "^15.6.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-filter-box": "^2.0.0",
+    "react-google-maps": "^9.4.5",
+    "react-load-script": "0.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.1",
+    "react-table": "^6.8.2",
+    "react-table-filter": "^1.1.0",
+    "superagent": "^3.8.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
