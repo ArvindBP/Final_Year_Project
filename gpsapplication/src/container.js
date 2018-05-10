@@ -1,67 +1,64 @@
 import React, { Component } from 'react';
 import './App.css';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker,Polyline } from "react-google-maps"
-
 import _ from 'lodash';
-
+import InfoBox from "react-google-maps/lib/components/addons/InfoBox";
 
 export default class App1 extends Component {
   constructor(props){
     super(props);
     this.state = {
-      op : null 
+      op : null
     }
   }
 
- 
-
   Component
 
-
   render() {
-   let op = [];
-    for(let j=1;j<7;j++){
+
+    let op = [];
+    for(let j=1;j<11;j++){
       let obj = {};
       obj.number = j;
       obj.array = [];
+      obj.name = '';
       op.push(obj);
     }
 
-     
-      for(let j=0;j<this.props.gpscoord.length;j++){
-        for(let k=0;k<op.length;k++){
-          if(this.props.gpscoord[j].number === op[k].number){
-            op[k].array.push(this.props.gpscoord[j]);
-          }
+    for(let j=0;j<this.props.gpscoord.length;j++){
+      for(let k=0;k<op.length;k++){
+        if(this.props.gpscoord[j].number === op[k].number){
+          op[k].name = this.props.gpscoord[j].name;
+          op[k].array.push(this.props.gpscoord[j]);
         }
       }
+    }
     
-
-   this.state.op = op;
-   
-
-    
-
+    this.state.op = op;
     let hello = [];
     let hello1 =[];
+    let toggle = false
 
-
-    
-      hello = _.map(this.state.op, (number) => {
-        let lat = Number(number.array[number.array.length-1].latitude);
-        let lon = Number(number.array[number.array.length-1].longitude);
-        
-
+    hello = _.map(this.state.op, (number) => {
+      let lat = Number(number.array[number.array.length-1].latitude);
+      let lon = Number(number.array[number.array.length-1].longitude);
         return (  
           <Marker
             position={{lat: lat, lng: lon}}
             icon = 'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png'
-            />
+            label = {{
+              text: number.name,
+              color: 'black',
+              fontSize: '12px',
+            }}
+          >
+                
+          </Marker>
         )
       })
 
-      hello1 = _.map(this.state.op,(number)=>{
-         let poly = []
+    hello1 = _.map(this.state.op,(number)=>{
+        let poly = []
         for(let j=0;j<number.array.length;j++){
           let obj = {};
           obj.lat = Number(number.array[j].latitude);
@@ -76,9 +73,7 @@ export default class App1 extends Component {
             color = 'green';
           else
             color = 'red';
-          
-        
-        return(
+    return(
 
       <Polyline
         path={poly}
@@ -86,11 +81,12 @@ export default class App1 extends Component {
         options ={{
                     strokeColor:color
                   }}/>)
-      })
+    })
+
       let MyMapComponent = withScriptjs(withGoogleMap((props) =>
         <GoogleMap
           defaultZoom={17}
-          defaultCenter={{lat: 12.24839, lng: 77.10394}}>
+          defaultCenter={{lat: 12.93449, lng: 77.53451}}>
           {hello}
         </GoogleMap>
       ))
@@ -102,8 +98,11 @@ export default class App1 extends Component {
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `80vh` }} />}
           mapElement={<div style={{ height: `100%` }} />}
-        />
-            
+          onToggleOpen = {({ isOpen }) => () => ({
+            isOpen: !isOpen,
+          })}
+          isOpen
+        />            
       </div>
     );
   }

@@ -18,8 +18,8 @@ export default class Login extends React.Component{
     this.check= this.check.bind(this);
   }
   check(id,password){
-    if(id=="admin" && password=="admin")
-      history.push('./hello');
+    if(id==="admin" && password==="admin")
+      history.push('./main');
   }
 
 	render(){
@@ -48,7 +48,7 @@ export default class Login extends React.Component{
         	/>
         	<br />
           
-        	<Button variant="raised" color="primary" component={Link} to="/main" onClick={()=>this.check(this.state.id,this.state.password)}>
+        	<Button variant="raised" color="primary" onClick={()=>this.check(this.state.id,this.state.password)}>
             Login
           </Button>
         </div>

@@ -72,18 +72,18 @@ class ResponsiveDrawer extends React.Component {
   
 
   componentWillMount(){
-    let url = "/api/v1/users";
-    Request.get(url)
-    .then((response) => {
-      this.setState({
-        gpscoord: JSON.parse(response.text)
-      });
+    this.interval = setInterval(()=>{
+      let url = "/api/v1/users";
+      Request.get(url)
+      .then((response) => {
+        this.setState({
+          gpscoord: JSON.parse(response.text)
+        });
+      })
+    },10000);
 
-      
-
-    })
-    this.interval = setInterval(() => this.setState({ time: Date.now() }), 2000);
-    
+    //this.interval = setInterval(() => this.setState({ time: Date.now() }), 2000);
+  
   }
 
   componentWillUnmount() {
@@ -165,8 +165,7 @@ class ResponsiveDrawer extends React.Component {
             <Router>
             <fragment>
               <Route exact={true} exact path="/main"  render={()=> <div>{call}</div>} />
-              <Route path="/main/IndividualInformation"  render={()=> <div>{call1}</div>} />
-              <Route path="/main/SendQuery/"  render={()=> <div>{call2}</div>} />
+              <Route path="/main/IndividualInformation"  render={()=> <div>{call2}</div>} />
             </fragment>
             </Router>
           </div>

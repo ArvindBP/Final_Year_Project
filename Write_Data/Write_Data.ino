@@ -24,11 +24,11 @@ char *ftoa(char *a, double f, int precision)
  
  char *ret = a;
  long heiltal = (long)f;
- itoa(heiltal, a, 10);
+ ltoa(heiltal, a, 10);
  while (*a != '\0') a++;
  *a++ = '.';
- long desimal = abs((long)((f - heiltal) * p[precision]));
- itoa(desimal, a, 10);
+ long desimal = labs((long)((f - heiltal) * p[precision+1]));
+ ltoa(desimal, a, 10);
  return ret;
 }
 
@@ -58,6 +58,7 @@ void loop()
     course = gps.course();
     lat1=lat*0.000001;
     lon1=lon*0.000001;
+    Serial.println(lat1);
     sprintf(frame,"%s",ftoa(strlat1,lat1,5));
     Serial.println(frame);
    mfrc522.PCD_Init();       // Init MFRC522 card
@@ -111,7 +112,7 @@ void loop()
    Serial.println(" ");
 
    block = 2;
-   sprintf(frame,"%s",ftoa(strlon1,lon1,6));
+   sprintf(frame,"%s",ftoa(strlon1,lon1,5));
    Serial.println(frame);
   //Serial.println(F("Authenticating using key A..."));
   status = mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, block, &key, &(mfrc522.uid));

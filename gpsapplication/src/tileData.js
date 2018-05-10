@@ -16,8 +16,5 @@ export const mailFolderListItems = (
     <ListItem button component={Link} to="/main/IndividualInformation">
       <ListItemText primary="Individual Components" />
     </ListItem>
-    <ListItem button component={Link} to="/main/SendQuery/">
-      <ListItemText primary="Send a Query" />
-    </ListItem>
   </div>
 );

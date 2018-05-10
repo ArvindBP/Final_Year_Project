@@ -19,7 +19,7 @@ export default class Indi extends React.Component{
 
 		console.log(this.props.gpscoord)
     let op = [];
-    	for(let j=1;j<7;j++){
+    	for(let j=1;j<11;j++){
     	  let obj = {};
     	  obj.number = j;
     	  obj.array = [];
@@ -45,7 +45,7 @@ export default class Indi extends React.Component{
 
       	this.state.op = op;
       	var rows = this.state.op;
-		console.log(this.state.op);
+		//console.log(this.state.op);
 
 		return(
 			<div className="main-container">

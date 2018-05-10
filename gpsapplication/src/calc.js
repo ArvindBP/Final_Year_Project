@@ -15,7 +15,7 @@ export default class Calc extends React.Component {
   }
   componentWillMount(){
     let op = [];
-      for(let j=1;j<7;j++){
+      for(let j=1;j<11;j++){
         let obj = {};
         obj.number = j;
         obj.array = [];
